@@ -1,8 +1,9 @@
 const request = require('request');
 const cheerio = require('cheerio');
 
-request('https://www.imdb.com/title/tt0110912/quotes', function (error, response, html) {   // pulp fiction
-// request('https://www.imdb.com/title/tt0451279/quotes', function (error, response, html) {    // wonder woman
+const imdbId = process.argv[2] || "tt0110912"; // default to Pulp Fiction if nothing was passed in
+
+request(`https://www.imdb.com/title/${imdbId}/quotes`, function (error, response, html) {
     if (!error && response.statusCode === 200) {
         const $ = cheerio.load(html);
 
